@@ -1,5 +1,7 @@
 # AetherCards - Smart AI Flashcard Generator
 
+### Selected Assignment Option: AI-Powered Smart Flashcard Generator (Option A / NLP Study Assistant)
+
 AetherCards is a premium web application designed for students to convert study notes into flashcards automatically using Natural Language Processing (NLP) and study them using an optimized spaced repetition Leitner system. 
 
 The application is built with a **FastAPI** backend, a **React (Vite)** frontend with custom glassmorphism styling, and a **MongoDB** database.
