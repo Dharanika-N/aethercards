@@ -26,6 +26,9 @@ try:
     print("Connected to MongoDB successfully!")
 except Exception as e:
     print(f"Local MongoDB connection failed: {e}")
+    if settings.ENV == "production":
+        print("ERROR: MongoDB connection failed in production. Failing loudly to prevent data loss!")
+        raise e
     print("Falling back to in-memory mongomock database...")
     import mongomock
     client = mongomock.MongoClient()

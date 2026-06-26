@@ -26,7 +26,15 @@ export default function Login({ apiBase, onLoginSuccess }) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.detail || 'Authentication failed. Please try again.');
+        let errorMsg = 'Authentication failed. Please try again.';
+        if (data && data.detail) {
+          if (typeof data.detail === 'string') {
+            errorMsg = data.detail;
+          } else if (Array.isArray(data.detail)) {
+            errorMsg = data.detail.map(err => err.msg).join(', ');
+          }
+        }
+        throw new Error(errorMsg);
       }
 
       // Save token in localStorage and notify parent
@@ -85,6 +93,7 @@ export default function Login({ apiBase, onLoginSuccess }) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
+              minLength={6}
             />
           </div>
 
